@@ -1,218 +1,1745 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sepideh Mohammadi — PCB Portfolio</title>
-  <meta name="description" content="Portfolio for Practical Printed Circuit Board Design and Manufacture — KiCad & Altium Designer" />
-  <style>
-    :root{--fg:#111;--mut:#555;--line:#e8e8e8;--bg:#fff}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.65}
-    a{color:inherit}
-    .container{max-width:960px;margin:auto;padding:0 16px}
-    header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10}
-    nav{display:flex;align-items:center;justify-content:space-between;height:56px}
-    nav a{font-size:14px;text-decoration:none;margin:0 8px}
-    nav a:hover{text-decoration:underline}
-    .hero{padding:44px 0;background:radial-gradient(ellipse at top, rgba(0,0,0,.04), transparent 60%)}
-    h1{margin:0 0 6px 0;font-size:28px}
-    .btn{display:inline-block;border:1px solid var(--line);padding:8px 14px;border-radius:10px;text-decoration:none;margin:6px 6px 0 0;font-size:14px}
-    .btn:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
-    section{padding:32px 0;border-top:1px solid var(--line)}
-    .card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
-    .muted{color:var(--mut)}
-    ul{padding-left:18px;margin:8px 0}
-    table{width:100%;border-collapse:collapse;font-size:14px}
-    th,td{border:1px solid var(--line);padding:8px;text-align:left}
-    thead{background:#f6f6f6}
-    footer{border-top:1px solid var(--line);padding:20px 0;text-align:center;color:var(--mut);font-size:14px}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sepideh Mohammadi — PCB Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* =========================================================
+   DESIGN SYSTEM
+   ========================================================= */
+:root {
+  --bg:        #04080f;
+  --bg2:       #080f1c;
+  --bg3:       #0d1726;
+  --card:      #101e32;
+  --border:    #1c3352;
+  --border2:   #243d5c;
+  --cyan:      #00d9ff;
+  --cyan2:     #0099cc;
+  --orange:    #ff6b35;
+  --green:     #00e5a0;
+  --purple:    #9b72ff;
+  --text:      #dce8f5;
+  --muted:     #6a88a8;
+  --dim:       #3a5570;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   GRID BACKGROUND
+   ========================================================= */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,217,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,217,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(4,8,15,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 64px;
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+
+/* =========================================================
+   SECTIONS & CONTAINERS
+   ========================================================= */
+section { position: relative; z-index: 1; }
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+h2.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing orb accent */
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,217,255,0.07) 0%, transparent 70%);
+  top: 50%; right: -100px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,217,255,0.08);
+  border: 1px solid rgba(0,217,255,0.2);
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.hero-name span { color: var(--cyan); }
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--orange);
+  margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+.chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-primary {
+  background: var(--cyan);
+  color: #04080f;
+}
+.btn-primary:hover { background: #33e4ff; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+}
+.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-1px); }
+
+/* Profile card */
+.hero-profile {
+  position: relative;
+}
+.profile-card {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,217,255,0.15) 0%, transparent 70%);
+}
+.profile-avatar {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan2), var(--purple));
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  border: 3px solid rgba(0,217,255,0.3);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+.profile-role {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-bottom: 1.25rem;
+}
+.profile-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.stat-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--cyan);
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+#about {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.9;
+}
+.about-text p strong { color: var(--text); }
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tool-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.tool-name {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+  width: 140px;
+  flex-shrink: 0;
+}
+.tool-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.tool-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  transition: width 1s ease;
+}
+.tool-level {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--dim);
+  width: 30px;
+  text-align: right;
+}
+
+/* =========================================================
+   LABS & BOARDS
+   ========================================================= */
+#projects {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+
+.projects-header {
+  margin-bottom: 4rem;
+}
+
+/* Filter tabs */
+.filter-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.tab-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.tab-btn:hover, .tab-btn.active {
+  background: rgba(0,217,255,0.1);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ---- Project card grid ---- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+.project-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-3px);
+}
+
+/* Color accent bar */
+.project-card.board  { border-top: 3px solid var(--cyan); }
+.project-card.lab    { border-top: 3px solid var(--orange); }
+.project-card.sbb    { border-top: 3px solid var(--green); }
+
+.card-image {
+  width: 100%;
+  height: 220px;
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--dim);
+  text-align: center;
+  padding: 1rem;
+}
+.img-placeholder svg { opacity: 0.4; }
+.img-placeholder .img-caption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--dim);
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+/* Scope waveform decoration */
+.scope-deco {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  opacity: 0.15;
+}
+
+.card-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: rgba(4,8,15,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.card-badge.orange { color: var(--orange); border-color: var(--orange); }
+.card-badge.green { color: var(--green); border-color: var(--green); }
+
+.card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.card-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+.card-type {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+.card-type.board { background: rgba(0,217,255,0.1); color: var(--cyan); }
+.card-type.lab   { background: rgba(255,107,53,0.1); color: var(--orange); }
+.card-type.sbb   { background: rgba(0,229,160,0.1); color: var(--green); }
+
+.card-title {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+
+.card-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* Key findings */
+.findings {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.findings-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.findings ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.findings li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+.findings li::before {
+  content: '→';
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+/* Data table inside card */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+.data-table th {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.data-table td {
+  padding: 0.45rem 0.6rem;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(28,51,82,0.5);
+}
+.data-table td:first-child { color: var(--text); font-weight: 500; }
+.data-table .highlight { color: var(--cyan); font-family: var(--font-mono); }
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.tag {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+#skills {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+.skills-table-wrap { overflow-x: auto; }
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.skills-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.skills-table tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(28,51,82,0.5);
+  vertical-align: middle;
+}
+.skills-table tbody td:first-child { color: var(--text); font-weight: 500; }
+.skills-table tbody td:last-child { color: var(--muted); font-size: 0.8rem; }
+
+.level-before { color: var(--dim); font-family: var(--font-mono); }
+.level-after  { color: var(--green); font-family: var(--font-mono); font-weight: 600; }
+
+/* Competencies */
+.competencies {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.comp-item {}
+.comp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.comp-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.comp-pct {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+}
+.comp-bar {
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.comp-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+}
+
+/* =========================================================
+   OUTCOMES
+   ========================================================= */
+#outcomes {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.outcome-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+.outcome-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(0,217,255,0.1);
+  border: 1px solid rgba(0,217,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+.outcome-body {}
+.outcome-title {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.outcome-desc {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+#contact {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.contact-text h2 { margin-bottom: 1rem; }
+.contact-text p {
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+}
+.contact-link:hover {
+  border-color: var(--cyan);
+  transform: translateX(4px);
+}
+.contact-link-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(0,217,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.contact-link-info {}
+.contact-link-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.contact-link-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* PCB artwork */
+.pcb-art {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pcb-art svg { opacity: 0.6; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--dim);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+  .hero-inner       { grid-template-columns: 1fr; }
+  .hero-profile     { display: none; }
+  .about-grid       { grid-template-columns: 1fr; }
+  .skills-grid      { grid-template-columns: 1fr; }
+  .contact-inner    { grid-template-columns: 1fr; }
+  .pcb-art          { display: none; }
+  .projects-grid    { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 1rem; }
+  .container { padding: 0 1rem; }
+  #hero { padding: 90px 0 60px; }
+  .hero-name { font-size: 2.5rem; }
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-up:nth-child(4) { animation-delay: 0.4s; }
+.fade-up:nth-child(5) { animation-delay: 0.5s; }
+</style>
 </head>
 <body>
-<header>
+
+<!-- =========================================================
+     NAV
+     ========================================================= -->
+<nav>
+  <a class="nav-logo" href="#">SM / PCB</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section id="hero">
   <div class="container">
-    <nav>
-      <strong>Sepideh Mohammadi</strong>
+    <div class="hero-inner">
       <div>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#outcomes">Outcomes</a>
-        <a href="#contact">Contact</a>
+        <div class="hero-badge fade-up">ECEN 5730 · PCB Design &amp; Manufacture</div>
+        <h1 class="hero-name fade-up">Sepideh<br/><span>Mohammadi</span></h1>
+        <p class="hero-title fade-up">PCB Designer &amp; PhD Researcher · CU Boulder</p>
+        <p class="hero-desc fade-up">
+          Designing boards from napkin sketch to working silicon: power delivery networks,
+          signal integrity, and embedded systems — documented across 4 boards and 8 labs.
+        </p>
+        <div class="hero-chips fade-up">
+          <span class="chip">Altium Designer</span>
+          <span class="chip">KiCad</span>
+          <span class="chip">ATMEGA328</span>
+          <span class="chip">Power Integrity</span>
+          <span class="chip">Signal Integrity</span>
+          <span class="chip">I²C / UART / SPI</span>
+          <span class="chip">555 Timer</span>
+          <span class="chip">Thevenin Analysis</span>
+        </div>
+        <div class="hero-links fade-up">
+          <a class="btn btn-primary" href="#projects">View Projects ↓</a>
+          <a class="btn btn-ghost" href="mailto:Sepideh.mohammadi@colorado.edu">Email Me</a>
+          <a class="btn btn-ghost" href="https://github.com/SseEpIdEh" target="_blank">GitHub →</a>
+        </div>
       </div>
-    </nav>
-  </div>
-</header>
 
-<main>
-  <div class="hero">
-    <div class="container">
-      <h1>Practical PCB Design & Manufacture — Portfolio</h1>
-      <p class="muted">PhD student in Computer Science · TA for Human–Computer Interaction · Tools: KiCad, Altium Designer</p>
-      <a class="btn" href="#projects">See Projects</a>
-      <a class="btn" href="mailto:Sepideh.mohammadi@colorado.edu">Sepideh.mohammadi@colorado.edu</a>
-      <a class="btn" href="https://github.com/SseEpIdEh" target="_blank" rel="noreferrer">GitHub</a>
-      <a class="btn" href="#">Resume (PDF)</a>
+      <!-- Profile card -->
+      <div class="hero-profile">
+        <div class="profile-card fade-up">
+          <div class="profile-avatar">SM</div>
+          <div class="profile-name">Sepideh Mohammadi</div>
+          <div class="profile-role">PhD Candidate · Computer Science</div>
+          <div class="profile-stats">
+            <div class="stat-box">
+              <span class="stat-num">4</span>
+              <span class="stat-label">PCBs Built</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">8</span>
+              <span class="stat-label">Labs Done</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Hard Errors</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">∞</span>
+              <span class="stat-label">Curiosity</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- OVERVIEW -->
-
-  <section id="overview">
-    <div class="container card">
-      <h2>Overview</h2>
-      <ul>
-        <li><strong>Goal:</strong> This site collects my work for <em>Practical Printed Circuit Board Design and Manufacture</em>.</li>
-        <li><strong>Role:</strong> PhD student in Computer Science; TA for HCI.</li>
-        <li><strong>Tools:</strong> KiCad and Altium Designer.</li>
-        <li><strong>End‑to‑end workflow:</strong>
-          <ul>
-            <li>Schematic</li>
-            <li>Layout</li>
-            <li>ERC/DRC</li>
-            <li>Gerber / Drill / BOM</li>
-            <li>Bring‑up & test</li>
-          </ul>
-        </li>
-        <li><strong>Focus areas:</strong>
-          <ul>
-            <li>Risk management</li>
-            <li>Testability (design for test)</li>
-            <li>Signal integrity (SI)</li>
-            <li>Power integrity (PI)</li>
-            <li>Manufacturability (DFM)</li>
-          </ul>
-        </li>
-      </ul>
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">// about me</div>
+        <h2 class="section-title">Engineer who builds<br/>things that work.</h2>
+        <p>
+          I am a <strong>PhD student in Computer Science</strong> at the University of Colorado Boulder,
+          also serving as a Teaching Assistant for Human–Computer Interaction. My research background
+          in computing naturally extends to hardware: I care deeply about making systems reliable,
+          observable, and testable.
+        </p>
+        <p>
+          This portfolio documents my journey through <strong>Practical PCB Design &amp; Manufacture
+          (ECEN 5730)</strong> — from first principles (Thevenin equivalents, loop inductance, decoupling
+          capacitor selection) through full-stack board design in Altium Designer, assembly, oscilloscope
+          bring-up, and formal reporting.
+        </p>
+        <p>
+          Every board I designed passed bring-up with <strong>zero hard errors</strong>. My Golden Arduino
+          (Board 3) achieved <strong>6× lower near-field emissions</strong> than a commercial Arduino Uno.
+        </p>
+      </div>
+      <div>
+        <div class="section-label">// skills &amp; tools</div>
+        <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;">
+          Current Proficiency
+        </h3>
+        <div class="tools-list">
+          <div class="tool-row">
+            <span class="tool-name">Altium Designer</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:85%"></div></div>
+            <span class="tool-level">85%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">KiCad</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:75%"></div></div>
+            <span class="tool-level">75%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">Oscilloscope / Probing</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:90%"></div></div>
+            <span class="tool-level">90%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">Power Integrity (PI)</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:80%"></div></div>
+            <span class="tool-level">80%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">Signal Integrity (SI)</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:78%"></div></div>
+            <span class="tool-level">78%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">Arduino / Embedded C</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:80%"></div></div>
+            <span class="tool-level">80%</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-name">DFM / Manufacturability</span>
+            <div class="tool-bar"><div class="tool-fill" style="width:82%"></div></div>
+            <span class="tool-level">82%</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- PROJECTS -->
-
-  <section id="projects">
-    <div class="container">
-      <h2>Projects (4 boards this semester)</h2>
-
-```
-  <div class="card" style="margin-top:12px">
-    <h3>Project 1 — <span class="muted">[short title]</span></h3>
-    <p>2–3 sentence summary (purpose, constraints: size/voltage/current, test goals).</p>
-    <h4>Standard steps for each board</h4>
-    <ul>
-      <li>POR and BOM — completed on your own</li>
-      <li>Schematic — completed on your own</li>
-      <li>Layout — completed on your own</li>
-      <li>CDR — in class and design signed off by your TA</li>
-      <li>Boards ordered the next day</li>
-      <li>Assembly, bring‑up and test — in class</li>
-      <li>Final report due by the following Monday, as midterm or final</li>
-    </ul>
-    <p><a class="btn" href="#">Schematic (PDF)</a> <a class="btn" href="#">Gerbers (ZIP)</a> <a class="btn" href="#">BOM (CSV)</a> <a class="btn" href="#">Report (PDF)</a></p>
   </div>
+</section>
 
-  <div class="card" style="margin-top:12px">
-    <h3>Project 2 — <span class="muted">[short title]</span></h3>
-    <p>2–3 sentence summary…</p>
-    <h4>Standard steps for each board</h4>
-    <ul>
-      <li>POR and BOM — completed on your own</li>
-      <li>Schematic — completed on your own</li>
-      <li>Layout — completed on your own</li>
-      <li>CDR — in class and design signed off by your TA</li>
-      <li>Boards ordered the next day</li>
-      <li>Assembly, bring‑up and test — in class</li>
-      <li>Final report due by the following Monday, as midterm or final</li>
-    </ul>
-    <p><a class="btn" href="#">Layout Notes</a> <a class="btn" href="#">DRC Report</a></p>
-  </div>
-
-  <div class="card" style="margin-top:12px">
-    <h3>Project 3 — <span class="muted">[short title]</span></h3>
-    <p>2–3 sentence summary…</p>
-    <h4>Standard steps for each board</h4>
-    <ul>
-      <li>POR and BOM — completed on your own</li>
-      <li>Schematic — completed on your own</li>
-      <li>Layout — completed on your own</li>
-      <li>CDR — in class and design signed off by your TA</li>
-      <li>Boards ordered the next day</li>
-      <li>Assembly, bring‑up and test — in class</li>
-      <li>Final report due by the following Monday, as midterm or final</li>
-    </ul>
-    <p><a class="btn" href="#">Files</a></p>
-  </div>
-
-  <div class="card" style="margin-top:12px">
-    <h3>Project 4 — <span class="muted">[short title]</span></h3>
-    <p>2–3 sentence summary…</p>
-    <h4>Standard steps for each board</h4>
-    <ul>
-      <li>POR and BOM — completed on your own</li>
-      <li>Schematic — completed on your own</li>
-      <li>Layout — completed on your own</li>
-      <li>CDR — in class and design signed off by your TA</li>
-      <li>Boards ordered the next day</li>
-      <li>Assembly, bring‑up and test — in class</li>
-      <li>Final report due by the following Monday, as midterm or final</li>
-    </ul>
-    <p><a class="btn" href="#">Files</a></p>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- SKILLS -->
-
-  <section id="skills">
-    <div class="container card">
-      <h2>Skills (Before → After)</h2>
-      <table>
-        <thead><tr><th>Skill</th><th>Before</th><th>After</th><th>Evidence</th></tr></thead>
-        <tbody>
-          <tr><td>KiCad PCB Design</td><td>2</td><td>4</td><td>Schematic→Layout workflow</td></tr>
-          <tr><td>Altium Designer</td><td>1</td><td>3</td><td>DRC / net classes</td></tr>
-          <tr><td>DFM/DRC & Manufacturing</td><td>1</td><td>4</td><td>Gerber & Drill & BOM</td></tr>
-          <tr><td>Signal/Power Integrity (basic)</td><td>1</td><td>3</td><td>Short loops, return paths</td></tr>
-          <tr><td>Test & Debug</td><td>1</td><td>3</td><td>Test points, bring‑up notes</td></tr>
-        </tbody>
-      </table>
+<!-- =========================================================
+     PROJECTS
+     ========================================================= -->
+<section id="projects">
+  <div class="container">
+    <div class="projects-header">
+      <div class="section-label">// labs &amp; boards</div>
+      <h2 class="section-title">All Projects</h2>
+      <p style="color:var(--muted);max-width:560px;margin-top:0.5rem;line-height:1.8;">
+        Four full PCB designs and eight hands-on labs — each building systematically
+        on the last, from breadboard prototyping to multi-layer professional boards.
+      </p>
     </div>
-  </section>
 
-  <!-- OUTCOMES -->
+    <div class="projects-grid">
 
-  <section id="outcomes">
-    <div class="container card">
-      <h2>Course Objectives → Evidence</h2>
-      <ol>
-        <li><strong>Concept → schematic/layout/parts/datasheets → design files:</strong> see Projects 1–2 (schematic, DRC, BOM, Gerbers).</li>
-        <li><strong>Circuit theory, EM, materials & manufacturing trade‑offs:</strong> notes in Project 2 (thermal/SI, fab constraints).</li>
-        <li><strong>Engineer interconnects for SI/PI:</strong> short high‑di/dt loops, controlled return paths; ground strategy.</li>
-        <li><strong>Troubleshooting with scopes & proper probing:</strong> test points and bring‑up checklist (Project 4).</li>
-        <li><strong>Build a portfolio from napkin sketch to working widget:</strong> this website + linked build files.</li>
-        <li><strong>Communicate technical concepts clearly:</strong> concise summaries, correct terminology, linked artifacts.</li>
-      </ol>
+      <!-- ===== SSB: 555 Timer ===== -->
+      <div class="project-card sbb">
+        <div class="card-image" style="display:grid;grid-template-columns:1fr 1fr;height:auto;gap:0;">
+          <img src="NE555.JPG" alt="NE555 oscilloscope measurements" style="width:100%;height:220px;object-fit:cover;border-right:1px solid var(--border);"/>
+          <img src="TLC555.JPG" alt="TLC555 oscilloscope measurements" style="width:100%;height:220px;object-fit:cover;"/>
+          <svg class="scope-deco" viewBox="0 0 600 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="0,40 60,40 60,15 120,15 120,40 180,40 180,40 240,40 240,15 300,15 300,40 360,40 360,15 420,15 420,40 500,40 600,40" stroke="#00e5a0" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="card-badge green">SBB Lab</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 02</span>
+            <span class="card-type sbb">Solderless Breadboard</span>
+          </div>
+          <h3 class="card-title">555 Timer — NE555 vs TLC555 Comparison</h3>
+          <p class="card-desc">
+            Built and characterized two 555 timer variants (NE555 bipolar and TLC555 CMOS) in astable mode
+            with RA = RB = 1 kΩ, C = 1 µF. Measured frequency, duty cycle, rise/fall times, and LED load
+            current with 47 Ω and 1 kΩ resistors. Evaluated which IC is more suitable for the Board 2 PCB design.
+          </p>
+          <div class="findings">
+            <div class="findings-title">Key Measurements</div>
+            <ul>
+              <li>NE555 rise = 89 ns, fall = 33.8 ns · TLC555 rise = 14.8 ns, fall = 11.1 ns</li>
+              <li>Measured frequency ~463 Hz vs theoretical 481 Hz (RA=RB=1 kΩ, C=1 µF)</li>
+              <li>With 47 Ω load: 76 mA (NE555) vs 61.7 mA (TLC555) — NE555 chosen for Board 2</li>
+              <li>NE555 preferred: higher current drive, robust output, compatible at target 500 Hz</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">NE555</span><span class="tag">TLC555</span><span class="tag">Astable</span>
+            <span class="tag">Rise/Fall Time</span><span class="tag">LED Load</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Lab 5: Slammer ===== -->
+      <div class="project-card lab">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <p class="img-caption">Slammer circuit — 9V rail voltage drop with 1 µF and 1000 µF decoupling caps, near vs far placement. Add your scope screenshots here.</p>
+          </div>
+          <svg class="scope-deco" viewBox="0 0 600 60" fill="none">
+            <polyline points="0,20 80,20 80,45 100,45 100,20 200,20 200,45 220,45 220,20 350,20 350,45 370,45 370,20 500,20 600,20" stroke="#ff6b35" stroke-width="2"/>
+          </svg>
+          <span class="card-badge orange">SBB Lab</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 05</span>
+            <span class="card-type lab">SBB Experiment</span>
+          </div>
+          <h3 class="card-title">PDN &amp; Slammer Circuit — Decoupling Capacitor Study</h3>
+          <p class="card-desc">
+            Built a slammer circuit (TIP41C NPN, MCP601 op-amp, 10 Ω load) on a breadboard to simulate
+            sudden current transients like an on-chip I/O port switching. Measured 9 V rail droops under
+            slow (1.4 µs) and fast (4 ns) edges with no cap, 1 µF, and 1000 µF — at near and far placements.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Configuration</th><th>Voltage Drop</th><th>Improvement</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>No cap (fast edge)</td><td class="highlight">1.811 V</td><td>—</td></tr>
+              <tr><td>1 µF, near (fast)</td><td class="highlight">640 mV</td><td>1.171 V better</td></tr>
+              <tr><td>1000 µF, near (fast)</td><td class="highlight">246 mV</td><td>1.565 V better</td></tr>
+              <tr><td>Loop inductance (slow)</td><td class="highlight">1.82 µH</td><td>L = V·dt/di</td></tr>
+            </tbody>
+          </table>
+          <div class="card-tags">
+            <span class="tag">TIP41C</span><span class="tag">MCP601</span><span class="tag">PDN</span>
+            <span class="tag">Decoupling Cap</span><span class="tag">Loop Inductance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Board 2: Hex Inverter ===== -->
+      <div class="project-card board">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            <p class="img-caption">Board 2 assembled — Good layout (left) vs Bad layout (right). Add your board photo or scope screenshot here.</p>
+          </div>
+          <span class="card-badge">PCB Board</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">BOARD 02</span>
+            <span class="card-type board">PCB Design</span>
+          </div>
+          <h3 class="card-title">Hex Inverter — Good vs Bad Layout Demo</h3>
+          <p class="card-desc">
+            Two-channel hex inverter board (SN74AHC14DR) with NE555 clock at 500 Hz / 66% duty cycle and
+            3.3 V LDO. The Good layout uses a continuous ground return plane and decoupling caps near the IC;
+            the Bad layout has no return plane and far decoupling. Quiet-low / Quiet-high measurements quantify
+            on-die power rail noise directly.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Metric</th><th>Good Layout</th><th>Bad Layout</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rise time</td><td class="highlight">1.76 ns</td><td class="highlight">5.58 ns</td></tr>
+              <tr><td>Fall time</td><td class="highlight">2.64 ns</td><td class="highlight">9.86 ns</td></tr>
+              <tr><td>Rail compression</td><td class="highlight">0.917 V</td><td class="highlight">1.85 V</td></tr>
+              <tr><td>Quiet High Vp-p</td><td class="highlight">690 mV</td><td class="highlight">1900 mV</td></tr>
+            </tbody>
+          </table>
+          <div class="findings">
+            <div class="findings-title">Key Findings</div>
+            <ul>
+              <li>Good layout: 3× faster transitions, 5× lower noise</li>
+              <li>Rth of hex inverter output = 66 Ω (from load-line measurement)</li>
+              <li>No hard or soft errors at bring-up; all test points measured cleanly</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">SN74AHC14DR</span><span class="tag">NE555</span><span class="tag">AMS1117</span>
+            <span class="tag">Ground Plane</span><span class="tag">Quiet Low/High</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Lab 15: Hex Inverter Findings ===== -->
+      <div class="project-card lab">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <p class="img-caption">Three-way scope comparison: Good Layout vs Good-but-Cap-Far vs Bad Layout. Add Scope 0–5 screenshots here.</p>
+          </div>
+          <svg class="scope-deco" viewBox="0 0 600 60" fill="none">
+            <polyline points="0,30 40,30 40,10 80,10 80,30 160,30 160,10 180,10 180,50 220,50 220,30 280,30 280,10 320,10 320,50 380,50 380,30 600,30" stroke="#ff6b35" stroke-width="2"/>
+          </svg>
+          <span class="card-badge orange">Lab Finding</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 15</span>
+            <span class="card-type lab">Analysis</span>
+          </div>
+          <h3 class="card-title">Hex Inverter — High-Speed Layout Analysis</h3>
+          <p class="card-desc">
+            Three-way comparison using a dedicated hex inverter test board with 555-timer trigger:
+            Good Layout (close decoupling + solid return plane), Good-but-Cap-Far (solid plane, far cap),
+            and Bad-Bad (far decoupling, no return plane). Rise/fall times and rail collapse measured.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Layout</th><th>Rise (ns)</th><th>Rail Collapse (mV)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Good Layout</td><td class="highlight">2.25</td><td class="highlight">274</td></tr>
+              <tr><td>Good, Cap Far</td><td class="highlight">3.78</td><td class="highlight">709</td></tr>
+              <tr><td>Bad Layout</td><td class="highlight">4.86</td><td class="highlight">1031</td></tr>
+            </tbody>
+          </table>
+          <div class="findings">
+            <div class="findings-title">Summary</div>
+            <ul>
+              <li>Bad layout: 2.2× slower rise time, 3.8× more rail noise than good layout</li>
+              <li>Moving cap far (still good plane) raises noise 2.6× — placement is critical</li>
+              <li>Continuous ground planes + close decoupling are non-negotiable for high-speed designs</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">Return Path</span><span class="tag">Decoupling</span>
+            <span class="tag">Rise Time</span><span class="tag">Rail Collapse</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Lab 16: Differential Signals ===== -->
+      <div class="project-card lab">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            <p class="img-caption">Serial monitor plot: differential (green, flat) vs single-ended (orange, noisy) during ground injection. Add Arduino IDE screenshot here.</p>
+          </div>
+          <span class="card-badge orange">SBB Lab</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 16</span>
+            <span class="card-type lab">Signal Integrity</span>
+          </div>
+          <h3 class="card-title">Differential vs Single-Ended Signals &amp; I²C Pull-Up Study</h3>
+          <p class="card-desc">
+            Used a TMP36 temperature sensor and ADS1115 16-bit ADC (±1.024 V, 31.25 µV/LSB) to compare
+            single-ended (AIN0 to GND) and differential (AIN0 – AIN1) measurements while injecting ±200 mA
+            ground noise via a function generator (20 Vp-p, 1 Hz square wave through 0.4 Ω return path).
+            Also characterized I²C SDA/SCL rise times vs pull-up resistance.
+          </p>
+          <div class="findings">
+            <div class="findings-title">Key Findings</div>
+            <ul>
+              <li>With no noise: both modes read 0.734 V → 23.4 °C (room temperature, as expected)</li>
+              <li>With ground injection: single-ended swings 93 mV p-p (erroneous 29 °C / 19.7 °C)</li>
+              <li>Differential signal: unaffected — shows 0 mV change, insensitive to ground bounce</li>
+              <li>I²C with 40 kΩ internal pull-ups: slow, noisy. With 1.5 kΩ external: sharp, clean</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">TMP36</span><span class="tag">ADS1115</span><span class="tag">I²C</span>
+            <span class="tag">Ground Bounce</span><span class="tag">Differential</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Lab 18: Inrush Current ===== -->
+      <div class="project-card lab">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <p class="img-caption">Pink trace (CH1−CH2 math): inrush spike at power-on across 1 Ω sense resistor. Add Figure 3 & 4 scope screenshots here.</p>
+          </div>
+          <span class="card-badge orange">SBB Lab</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 18</span>
+            <span class="card-type lab">Power Analysis</span>
+          </div>
+          <h3 class="card-title">Inrush Current &amp; Steady-State Measurement</h3>
+          <p class="card-desc">
+            Characterized power-on inrush and steady-state current in a 555-timer LED circuit using a 1 Ω
+            sense resistor and three 10× oscilloscope probes. The Math function (CH1 − CH2) displayed voltage
+            across the sense resistor. Oscilloscope set to Normal trigger mode to capture the fast power-on transient.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Measurement</th><th>Value</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>555 output frequency</td><td class="highlight">≈360 Hz</td><td>Square wave, 5.2 Vp-p</td></tr>
+              <tr><td>Steady-state current</td><td class="highlight">≈3.5 mA</td><td>35 mV / 1 Ω</td></tr>
+              <tr><td>Inrush peak current</td><td class="highlight">≈1.6 A</td><td>2.4 V / 1 Ω transient</td></tr>
+              <tr><td>Inrush duration</td><td class="highlight">~few 100 µs</td><td>10 µF cap charging</td></tr>
+            </tbody>
+          </table>
+          <div class="card-tags">
+            <span class="tag">Inrush Current</span><span class="tag">Sense Resistor</span>
+            <span class="tag">555 Timer</span><span class="tag">Normal Trigger</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Board 3: Golden Arduino ===== -->
+      <div class="project-card board">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 2v20M17 2v20M2 7h5M2 12h5M2 17h5M17 7h5M17 12h5M17 17h5"/></svg>
+            <p class="img-caption">Golden Arduino assembled board — add your board photo and NFE scope comparison screenshots here.</p>
+          </div>
+          <span class="card-badge">PCB Board</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">BOARD 03</span>
+            <span class="card-type board">PCB Design</span>
+          </div>
+          <h3 class="card-title">Golden Arduino — Custom ATMEGA328 Board</h3>
+          <p class="card-desc">
+            Full Arduino Uno clone designed from scratch in Altium Designer using a 7-step design process.
+            Features ATMEGA328, CH340G USB-UART, 3.3V LDO, 16 MHz / 12 MHz crystals, TVS diode on USB,
+            0.5 Ω inrush sense resistor, ferrite bead on AVCC, and a shield connector for comparative testing
+            against a commercial Arduino Uno.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Metric</th><th>Commercial Uno</th><th>Golden Arduino</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>NFE Rising Edge</td><td>101 mV</td><td class="highlight">16.68 mV</td></tr>
+              <tr><td>NFE Falling Edge</td><td>169 mV</td><td class="highlight">27.3 mV</td></tr>
+              <tr><td>Quiet Low (rising)</td><td>355 mV</td><td class="highlight">179 mV</td></tr>
+              <tr><td>Rth (5V pin)</td><td>—</td><td class="highlight">1 Ω</td></tr>
+              <tr><td>Inrush current</td><td>—</td><td class="highlight">3.214 A</td></tr>
+            </tbody>
+          </table>
+          <div class="findings">
+            <div class="findings-title">What Worked / Issues</div>
+            <ul>
+              <li>ATMEGA bootloaded successfully via SPI/ICSP; blink sketch uploaded and ran</li>
+              <li>Near-field emissions 6× lower than commercial Arduino on rising edge</li>
+              <li>Issue: 3.3V LDO not powered via USB path (SW1 routing) — fixed by using power jack</li>
+            </ul>
+          </div>
+          <div class="card-tags">
+            <span class="tag">ATMEGA328</span><span class="tag">CH340G</span><span class="tag">AMS1117</span>
+            <span class="tag">NFE</span><span class="tag">ICSP</span><span class="tag">Inrush</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Lab 21/22: VRM Characterizer SBB ===== -->
+      <div class="project-card sbb">
+        <div class="card-image">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            <p class="img-caption">Excel scatter plot — R_th vs I_load for Arduino VRM (≈1.36 Ω) and Function Generator (≈48 Ω). Add your measurement screenshots here.</p>
+          </div>
+          <svg class="scope-deco" viewBox="0 0 600 60" fill="none">
+            <polyline points="0,50 50,45 100,42 150,40 200,38 250,37 300,36.5 350,36 400,35.5 500,35 600,35" stroke="#00e5a0" stroke-width="2"/>
+          </svg>
+          <span class="card-badge green">SBB Lab</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">LAB 21 &amp; 22</span>
+            <span class="card-type sbb">VRM Characterizer</span>
+          </div>
+          <h3 class="card-title">VRM Characterizer — Breadboard Prototype</h3>
+          <p class="card-desc">
+            Built the breadboard version of Board 4's instrument on a solderless breadboard: MCP4725 DAC
+            controls a current sweep through a TIP401 MOSFET, with ADS1115 ADC measuring VRM voltage.
+            Computed Rth = (V_open − V_loaded) / I_load via Arduino code and exported data to Excel.
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Source</th><th>R_th (Ω)</th><th>Current Range</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Arduino 5V VRM</td><td class="highlight">~1.36 Ω</td><td>14–184 mA</td></tr>
+              <tr><td>Arduino 3.3V</td><td class="highlight">0.24→1.77 Ω</td><td>increases with load</td></tr>
+              <tr><td>Function Generator</td><td class="highlight">~48 Ω</td><td>3–16 mA (stable)</td></tr>
+            </tbody>
+          </table>
+          <div class="card-tags">
+            <span class="tag">MCP4725 DAC</span><span class="tag">ADS1115 ADC</span><span class="tag">MOSFET</span>
+            <span class="tag">Thevenin</span><span class="tag">Load Regulation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Board 4: Instrument Droid ===== -->
+      <div class="project-card board" style="grid-column: 1 / -1;">
+        <div class="card-image" style="height:260px;">
+          <div class="img-placeholder">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="2"/></svg>
+            <p class="img-caption" style="max-width:400px;">
+              Board 4 circular PCB — assembled front &amp; back, OLED display showing Rth, scope shots of I²C/DAC/USB signals, inrush current (5.14 A).
+              Add your board photo and scope screenshots here.
+            </p>
+          </div>
+          <span class="card-badge">PCB Board · Capstone</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">BOARD 04</span>
+            <span class="card-type board">PCB Design · Capstone</span>
+          </div>
+          <h3 class="card-title">Instrument Droid — Automatic Rth Measurement System</h3>
+          <p class="card-desc">
+            A circular 4-layer PCB that automatically measures the Thevenin resistance of any voltage supply
+            up to 12 V. The ATMEGA328 runs a firmware sweep: MCP4725 DAC → MCP6002 op-amp → IRF530 MOSFET
+            load; ADS1115 16-bit ADC reads Vth and Vload; results displayed on an OLED and sent over UART.
+            Includes 3 smart RGB LEDs, buzzer, USB mini-B with TVS diode, and ferrite filter on AVCC.
+          </p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.25rem;">
+            <div>
+              <table class="data-table">
+                <thead><tr><th>Signal</th><th>Measurement</th></tr></thead>
+                <tbody>
+                  <tr><td>Inrush current (power-on)</td><td class="highlight">5.14 A</td></tr>
+                  <tr><td>5V wall wart Rth (avg)</td><td class="highlight">≈0.55–0.85 Ω</td></tr>
+                  <tr><td>3.3V Arduino Rth (at 100 mA)</td><td class="highlight">~0.85 Ω</td></tr>
+                  <tr><td>Function Generator Rth</td><td class="highlight">48 Ω (const.)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="findings">
+              <div class="findings-title">Best Design Practices Applied</div>
+              <ul>
+                <li>4-layer board: signals top, GND plane L2, PWR plane L3, signals bottom</li>
+                <li>Stitching ground vias around layer transitions for SI</li>
+                <li>3×3 inch form factor (JLC lowest cost bracket)</li>
+                <li>20 mil power traces, 6 mil signal traces; 1206 SMD for hand soldering</li>
+                <li>Zero hard or soft errors at bring-up — everything worked first time</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-tags">
+            <span class="tag">ATMEGA328</span><span class="tag">MCP4725 DAC</span><span class="tag">ADS1115 ADC</span>
+            <span class="tag">MCP6002 Op-Amp</span><span class="tag">OLED</span><span class="tag">I²C</span>
+            <span class="tag">4-Layer PCB</span><span class="tag">Circular Board</span><span class="tag">Inrush</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+  </div>
+</section>
+
+<!-- =========================================================
+     SKILLS
+     ========================================================= -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// before → after</div>
+    <h2 class="section-title">Skills Growth</h2>
+    <p style="color:var(--muted);margin-top:0.5rem;margin-bottom:3rem;max-width:520px;line-height:1.8;">
+      Measured on a 1–5 scale at the start and end of ECEN 5730. Evidence links to project deliverables.
+    </p>
+
+    <div class="skills-grid">
+      <div class="skills-table-wrap">
+        <table class="skills-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Evidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KiCad PCB Design</td>
+              <td><span class="level-before">2/5</span></td>
+              <td><span class="level-after">4/5</span></td>
+              <td>Schematic → Layout workflow</td>
+            </tr>
+            <tr>
+              <td>Altium Designer</td>
+              <td><span class="level-before">1/5</span></td>
+              <td><span class="level-after">4/5</span></td>
+              <td>Board 2–4 full designs</td>
+            </tr>
+            <tr>
+              <td>DFM / DRC / Gerbers</td>
+              <td><span class="level-before">1/5</span></td>
+              <td><span class="level-after">5/5</span></td>
+              <td>All boards ordered from JLC</td>
+            </tr>
+            <tr>
+              <td>Signal Integrity</td>
+              <td><span class="level-before">1/5</span></td>
+              <td><span class="level-after">4/5</span></td>
+              <td>Good/bad layout Lab 15</td>
+            </tr>
+            <tr>
+              <td>Power Integrity</td>
+              <td><span class="level-before">1/5</span></td>
+              <td><span class="level-after">4/5</span></td>
+              <td>Lab 5 decoupling study</td>
+            </tr>
+            <tr>
+              <td>Oscilloscope / Probing</td>
+              <td><span class="level-before">2/5</span></td>
+              <td><span class="level-after">5/5</span></td>
+              <td>Inrush, NFE, quiet-node</td>
+            </tr>
+            <tr>
+              <td>Embedded / Arduino C</td>
+              <td><span class="level-before">2/5</span></td>
+              <td><span class="level-after">4/5</span></td>
+              <td>Board 4 firmware, I²C driver</td>
+            </tr>
+            <tr>
+              <td>Thevenin / PDN Analysis</td>
+              <td><span class="level-before">1/5</span></td>
+              <td><span class="level-after">5/5</span></td>
+              <td>Lab 5, Board 3 &amp; 4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;">
+          Core Competencies
+        </h3>
+        <div class="competencies">
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">Power Delivery Network (PDN) Design</span>
+              <span class="comp-pct">92%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:92%"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">Signal Integrity &amp; Return Paths</span>
+              <span class="comp-pct">88%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:88%"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">Schematic Capture &amp; BOM</span>
+              <span class="comp-pct">90%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:90%"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">PCB Layout &amp; Design Rules</span>
+              <span class="comp-pct">85%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:85%"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">Board Bring-Up &amp; Debug</span>
+              <span class="comp-pct">95%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:95%"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-header">
+              <span class="comp-name">Embedded Firmware (Arduino)</span>
+              <span class="comp-pct">82%</span>
+            </div>
+            <div class="comp-bar"><div class="comp-fill" style="width:82%"></div></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-
-  <section id="contact">
-    <div class="container card">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:Sepideh.mohammadi@colorado.edu">Sepideh.mohammadi@colorado.edu</a> ·
-         <a href="https://github.com/SseEpIdEh" target="_blank" rel="noreferrer">GitHub</a> ·
-         <a href="#" target="_blank" rel="noreferrer">LinkedIn</a></p>
+<!-- =========================================================
+     OUTCOMES
+     ========================================================= -->
+<section id="outcomes">
+  <div class="container">
+    <div class="section-label">// course outcomes</div>
+    <h2 class="section-title">Learning Outcomes</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-icon">🔌</div>
+        <div class="outcome-body">
+          <div class="outcome-title">Concept → Working Board</div>
+          <div class="outcome-desc">From napkin sketch through schematic, layout, Gerbers, and assembly — all 4 boards built and functioning.</div>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">⚡</div>
+        <div class="outcome-body">
+          <div class="outcome-title">SI / PI Engineering</div>
+          <div class="outcome-desc">Quantified loop inductance, decoupling capacitor sizing (C = I·dt/dv), and Thevenin resistance of real power supplies.</div>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">📐</div>
+        <div class="outcome-body">
+          <div class="outcome-title">Trade-off Analysis</div>
+          <div class="outcome-desc">Documented good vs bad layout impact: up to 6× lower emissions, 5× less noise, 3× faster transitions.</div>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">🔬</div>
+        <div class="outcome-body">
+          <div class="outcome-title">Oscilloscope Proficiency</div>
+          <div class="outcome-desc">Measured inrush current (up to 5.14 A), near-field emissions, quiet-low/high on-die noise, I²C timing, and Rth sweeps.</div>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">🛡️</div>
+        <div class="outcome-body">
+          <div class="outcome-title">Zero Hard Errors</div>
+          <div class="outcome-desc">Every board passed bring-up. Board 4 had zero hard or soft errors. Board 3's only issue was a routing omission with an easy workaround.</div>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">📡</div>
+        <div class="outcome-body">
+          <div class="outcome-title">Communication</div>
+          <div class="outcome-desc">Full written reports for each board and lab: scope screenshots, calculations, data tables, and design-practice rationale.</div>
+        </div>
+      </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-text">
+        <div class="section-label">// get in touch</div>
+        <h2 class="section-title">Let's connect.</h2>
+        <p>
+          I am open to discussing PCB design, power integrity, embedded systems,
+          or research opportunities. Feel free to reach out via email or LinkedIn.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:Sepideh.mohammadi@colorado.edu">
+            <div class="contact-link-icon">✉</div>
+            <div class="contact-link-info">
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">Sepideh.mohammadi@colorado.edu</div>
+            </div>
+          </a>
+          <a class="contact-link" href="https://github.com/SseEpIdEh" target="_blank">
+            <div class="contact-link-icon">⌥</div>
+            <div class="contact-link-info">
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">github.com/SseEpIdEh</div>
+            </div>
+          </a>
+          <a class="contact-link" href="https://www.colorado.edu" target="_blank">
+            <div class="contact-link-icon">🎓</div>
+            <div class="contact-link-info">
+              <div class="contact-link-label">Institution</div>
+              <div class="contact-link-value">University of Colorado Boulder</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- PCB artwork -->
+      <div class="pcb-art">
+        <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="40" width="220" height="220" rx="12" stroke="#1c3352" stroke-width="2"/>
+          <!-- Traces -->
+          <path d="M80 80 H150 V120 H220" stroke="#00d9ff" stroke-width="1.5" opacity="0.4"/>
+          <path d="M80 150 H110 V200 H180 V220" stroke="#00d9ff" stroke-width="1.5" opacity="0.4"/>
+          <path d="M220 80 V140 H180 V200" stroke="#00e5a0" stroke-width="1.5" opacity="0.4"/>
+          <path d="M80 220 H130 V180 H160 V150 H220 V120" stroke="#ff6b35" stroke-width="1.5" opacity="0.3"/>
+          <!-- Vias -->
+          <circle cx="150" cy="120" r="5" stroke="#00d9ff" stroke-width="1.5" fill="#0d1726" opacity="0.8"/>
+          <circle cx="110" cy="200" r="5" stroke="#00d9ff" stroke-width="1.5" fill="#0d1726" opacity="0.8"/>
+          <circle cx="180" cy="200" r="5" stroke="#00e5a0" stroke-width="1.5" fill="#0d1726" opacity="0.8"/>
+          <circle cx="160" cy="150" r="5" stroke="#ff6b35" stroke-width="1.5" fill="#0d1726" opacity="0.8"/>
+          <!-- IC package -->
+          <rect x="120" y="120" width="60" height="60" rx="4" stroke="#1c3352" stroke-width="2" fill="#080f1c"/>
+          <rect x="124" y="124" width="52" height="52" rx="2" stroke="#243d5c" stroke-width="1"/>
+          <text x="150" y="152" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6a88a8">IC</text>
+          <!-- Pads along edges -->
+          <rect x="60" y="76" width="12" height="8" rx="1" fill="#1c3352"/>
+          <rect x="60" y="92" width="12" height="8" rx="1" fill="#1c3352"/>
+          <rect x="60" y="108" width="12" height="8" rx="1" fill="#1c3352"/>
+          <rect x="228" y="76" width="12" height="8" rx="1" fill="#1c3352"/>
+          <rect x="228" y="92" width="12" height="8" rx="1" fill="#1c3352"/>
+          <rect x="228" y="216" width="12" height="8" rx="1" fill="#1c3352"/>
+          <!-- Mounting holes -->
+          <circle cx="60" cy="60" r="6" stroke="#1c3352" stroke-width="2" fill="none"/>
+          <circle cx="240" cy="60" r="6" stroke="#1c3352" stroke-width="2" fill="none"/>
+          <circle cx="60" cy="240" r="6" stroke="#1c3352" stroke-width="2" fill="none"/>
+          <circle cx="240" cy="240" r="6" stroke="#1c3352" stroke-width="2" fill="none"/>
+          <!-- Silkscreen label -->
+          <text x="150" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#243d5c" letter-spacing="3">ECEN5730 · SM</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
 <footer>
-  <div class="container">© <span id="y"></span> Sepideh Mohammadi — All rights reserved.</div>
+  © 2025 Sepideh Mohammadi · ECEN 5730 — Practical PCB Design &amp; Manufacture · CU Boulder
 </footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+<script>
+// Animate bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.tool-fill, .comp-fill').forEach(el => {
+        el.style.width = el.dataset.w || el.style.width;
+      });
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('#about, #skills').forEach(s => observer.observe(s));
+
+// Active nav link highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+  });
+});
+</script>
 </body>
 </html>
