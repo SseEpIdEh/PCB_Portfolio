@@ -1,1 +1,52 @@
 
+<!-- ===== Lab 5: PDN and Slammer Circuit PDF Report ===== -->
+<div class="project-card lab" style="grid-column: 1 / -1;">
+  <div class="card-body">
+
+    <div class="card-meta">
+      <span class="card-num">LAB 05</span>
+      <span class="card-type lab">SBB Experiment</span>
+    </div>
+
+    <h3 class="card-title">PDN and Slammer Circuit — Full Lab Report</h3>
+
+    <p class="card-desc">
+      This report studies how sudden current switching affects a 9 V power rail using a slammer circuit.
+      The experiment compares slow and fast switching edges, estimates load current and Thevenin resistance,
+      and evaluates how 1 µF and 1000 µF decoupling capacitors reduce voltage droop when placed near or far
+      from the switching transistor.
+    </p>
+
+    <div class="findings">
+      <div class="findings-title">Main Results</div>
+      <ul>
+        <li>Fast switching caused a much larger voltage drop than slow switching.</li>
+        <li>Without decoupling, the fast-edge voltage drop reached about 1.811 V.</li>
+        <li>A 1 µF capacitor reduced the drop but was not enough for strong stabilization.</li>
+        <li>A 1000 µF capacitor placed near the transistor gave the best result.</li>
+        <li>Capacitor placement close to the switching device reduced loop inductance and improved performance.</li>
+      </ul>
+    </div>
+
+    <div class="pdf-viewer">
+      <iframe src="files/lab5-pdn-slammer-report.pdf"></iframe>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <a class="btn btn-primary" href="files/lab5-pdn-slammer-report.pdf" target="_blank">
+        Open Full PDF →
+      </a>
+    </div>
+
+    <div class="card-tags">
+      <span class="tag">PDN</span>
+      <span class="tag">Slammer Circuit</span>
+      <span class="tag">TIP41C</span>
+      <span class="tag">MCP601</span>
+      <span class="tag">Decoupling</span>
+      <span class="tag">Loop Inductance</span>
+      <span class="tag">Power Integrity</span>
+    </div>
+
+  </div>
+</div>
