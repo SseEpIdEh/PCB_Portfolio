@@ -928,6 +928,31 @@ footer {
   border: 1px solid var(--border);
   display: block;
 }
+
+.pdf-viewer {
+  width: 100%;
+  height: 720px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.pdf-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .pdf-viewer {
+    height: 520px;
+  }
+}
+
 @media (max-width: 600px) {
   .report-step { padding: 1rem; }
   .report-img { max-height: 360px; }
@@ -1331,7 +1356,7 @@ footer {
           </div>
 
           <div class="pdf-viewer">
-            <iframe src="files/lab5-pdn-slammer-report.pdf"></iframe>
+            <iframe src="files/lab5-pdn-slammer-report.pdf" title="Lab 5 PDN and Slammer Circuit full report"></iframe>
           </div>
 
     <div style="margin-top:1rem;">
