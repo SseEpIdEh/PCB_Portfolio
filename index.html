@@ -1356,11 +1356,11 @@ footer {
           </div>
 
           <div class="pdf-viewer">
-            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/lab5-pdn-slammer-report.pdf"></iframe>
-         </div>
+            <iframe src="files/lab5-pdn-slammer-report.pdf" title="Lab 5 PDN and Slammer Circuit full report"></iframe>
+          </div>
 
     <div style="margin-top:1rem;">
-      <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/lab5-pdn-slammer-report.pdf" target="_blank">
+      <a class="btn btn-primary" href="files/lab5-pdn-slammer-report.pdf" target="_blank">
         Open Full PDF →
       </a>
     </div>
@@ -1378,50 +1378,113 @@ footer {
   </div>
 </div>
 
-      <!-- ===== Board 2: Hex Inverter ===== -->
-      <div class="project-card board">
-        <div class="card-image">
-          <div class="img-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-            <p class="img-caption">Board 2 assembled — Good layout (left) vs Bad layout (right). Add your board photo or scope screenshot here.</p>
-          </div>
-          <span class="card-badge">PCB Board</span>
-        </div>
+      <!-- ===== Board 2: Hex Inverter PDF Report ===== -->
+      <div class="project-card board" style="grid-column: 1 / -1;">
         <div class="card-body">
+
           <div class="card-meta">
             <span class="card-num">BOARD 02</span>
             <span class="card-type board">PCB Design</span>
           </div>
-          <h3 class="card-title">Hex Inverter — Good vs Bad Layout Demo</h3>
+
+          <h3 class="card-title">Hex Inverter Board — Good vs Bad Layout Report</h3>
+
           <p class="card-desc">
-            Two-channel hex inverter board (SN74AHC14DR) with NE555 clock at 500 Hz / 66% duty cycle and
-            3.3 V LDO. The Good layout uses a continuous ground return plane and decoupling caps near the IC;
-            the Bad layout has no return plane and far decoupling. Quiet-low / Quiet-high measurements quantify
-            on-die power rail noise directly.
+            This board was designed to demonstrate how PCB layout decisions affect switching noise,
+            power delivery network behavior, and on-die rail noise. The board compares two identical
+            hex inverter circuits: one with good layout practices, including a continuous return plane
+            and close decoupling, and one with poor layout practices, including weak return paths and
+            far decoupling.
           </p>
-          <table class="data-table">
-            <thead>
-              <tr><th>Metric</th><th>Good Layout</th><th>Bad Layout</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Rise time</td><td class="highlight">1.76 ns</td><td class="highlight">5.58 ns</td></tr>
-              <tr><td>Fall time</td><td class="highlight">2.64 ns</td><td class="highlight">9.86 ns</td></tr>
-              <tr><td>Rail compression</td><td class="highlight">0.917 V</td><td class="highlight">1.85 V</td></tr>
-              <tr><td>Quiet High Vp-p</td><td class="highlight">690 mV</td><td class="highlight">1900 mV</td></tr>
-            </tbody>
-          </table>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">2</span>
+              <span class="summary-label">layouts compared</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">1.76 ns</span>
+              <span class="summary-label">good-layout rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">5.58 ns</span>
+              <span class="summary-label">bad-layout rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">0</span>
+              <span class="summary-label">hard / soft errors</span>
+            </div>
+          </div>
+
           <div class="findings">
-            <div class="findings-title">Key Findings</div>
+            <div class="findings-title">Main Results</div>
             <ul>
-              <li>Good layout: 3× faster transitions, 5× lower noise</li>
-              <li>Rth of hex inverter output = 66 Ω (from load-line measurement)</li>
-              <li>No hard or soft errors at bring-up; all test points measured cleanly</li>
+              <li>The board successfully powered on, and the 5 V and 3.3 V indicator LEDs worked correctly.</li>
+              <li>The NE555 generated an approximately 500 Hz square-wave clock for the hex inverters.</li>
+              <li>The good layout showed faster edges and lower rail noise because of close decoupling and a continuous return plane.</li>
+              <li>The bad layout showed slower transitions, larger rail compression, and more quiet-node noise due to poor return paths.</li>
+              <li>The report confirms that local decoupling and return-path design strongly affect power integrity and switching noise.</li>
             </ul>
           </div>
-          <div class="card-tags">
-            <span class="tag">SN74AHC14DR</span><span class="tag">NE555</span><span class="tag">AMS1117</span>
-            <span class="tag">Ground Plane</span><span class="tag">Quiet Low/High</span>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Measurement</th>
+                <th>Good Layout</th>
+                <th>Bad Layout</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rise time</td>
+                <td class="highlight">1.76 ns</td>
+                <td class="highlight">5.58 ns</td>
+              </tr>
+              <tr>
+                <td>Fall time</td>
+                <td class="highlight">2.64 ns</td>
+                <td class="highlight">9.86 ns</td>
+              </tr>
+              <tr>
+                <td>Quiet high noise</td>
+                <td class="highlight">690 mV</td>
+                <td class="highlight">1900 mV</td>
+              </tr>
+              <tr>
+                <td>Rail compression</td>
+                <td class="highlight">0.917 V</td>
+                <td class="highlight">1.85 V</td>
+              </tr>
+              <tr>
+                <td>Output Thevenin resistance</td>
+                <td class="highlight">≈66 Ω</td>
+                <td class="highlight">—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/board2-hex-inverter-report.pdf"></iframe>
           </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/board2-hex-inverter-report.pdf" target="_blank">
+              Open Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">Hex Inverter</span>
+            <span class="tag">SN74AHC14DR</span>
+            <span class="tag">NE555</span>
+            <span class="tag">Good vs Bad Layout</span>
+            <span class="tag">PDN</span>
+            <span class="tag">Switching Noise</span>
+            <span class="tag">Ground Return</span>
+            <span class="tag">Decoupling</span>
+          </div>
+
         </div>
       </div>
 
