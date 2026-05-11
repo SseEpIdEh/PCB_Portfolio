@@ -1326,6 +1326,7 @@ footer {
       </div>
 
    
+      
       <!-- ===== Lab 5: PDN and Slammer Circuit PDF Report ===== -->
       <div class="project-card lab" style="grid-column: 1 / -1;">
         <div class="card-body">
@@ -1344,6 +1345,25 @@ footer {
             from the switching transistor.
           </p>
 
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">1.811 V</span>
+              <span class="summary-label">fast-edge drop without decoupling</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">640 mV</span>
+              <span class="summary-label">fast-edge drop with 1 µF near</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">246 mV</span>
+              <span class="summary-label">fast-edge drop with 1000 µF near</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">2.06 Ω</span>
+              <span class="summary-label">estimated Thevenin resistance</span>
+            </div>
+          </div>
+
           <div class="findings">
             <div class="findings-title">Main Results</div>
             <ul>
@@ -1359,24 +1379,27 @@ footer {
             <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/lab5-pdn-slammer-report.pdf" title="Lab 5 PDN and Slammer Circuit full report"></iframe>
           </div>
 
-    <div style="margin-top:1rem;">
-      <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/lab5-pdn-slammer-report.pdf" target="_blank">
-        Open Full PDF →
-      </a>
-    </div>
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary"
+               href="https://sseepideh.github.io/PCB_Portfolio/files/lab5-pdn-slammer-report.pdf"
+               target="_blank">
+              Open Lab 5 Full PDF →
+            </a>
+          </div>
 
-    <div class="card-tags">
-      <span class="tag">PDN</span>
-      <span class="tag">Slammer Circuit</span>
-      <span class="tag">TIP41C</span>
-      <span class="tag">MCP601</span>
-      <span class="tag">Decoupling</span>
-      <span class="tag">Loop Inductance</span>
-      <span class="tag">Power Integrity</span>
-    </div>
+          <div class="card-tags">
+            <span class="tag">PDN</span>
+            <span class="tag">Slammer Circuit</span>
+            <span class="tag">TIP41C</span>
+            <span class="tag">MCP601</span>
+            <span class="tag">Decoupling</span>
+            <span class="tag">Loop Inductance</span>
+            <span class="tag">Power Integrity</span>
+          </div>
 
-  </div>
-</div>
+        </div>
+      </div>
+
 
       <!-- ===== Board 2: Hex Inverter PDF Report ===== -->
       <div class="project-card board" style="grid-column: 1 / -1;">
@@ -1390,40 +1413,39 @@ footer {
           <h3 class="card-title">Hex Inverter Board — Good vs Bad Layout Report</h3>
 
           <p class="card-desc">
-            This board was designed to demonstrate how PCB layout decisions affect switching noise,
-            power delivery network behavior, and on-die rail noise. The board compares two identical
-            hex inverter circuits: one with good layout practices, including a continuous return plane
-            and close decoupling, and one with poor layout practices, including weak return paths and
-            far decoupling.
+            This report demonstrates how PCB layout decisions affect switching noise and power delivery network behavior.
+            The board compares two identical hex inverter circuits: one with good layout practices and one with poor layout
+            practices. The good layout uses close decoupling and a continuous return plane, while the bad layout uses longer
+            return paths and far decoupling.
           </p>
 
           <div class="report-summary">
             <div class="summary-box">
-              <span class="summary-num">2</span>
-              <span class="summary-label">layouts compared</span>
-            </div>
-            <div class="summary-box">
               <span class="summary-num">1.76 ns</span>
-              <span class="summary-label">good-layout rise time</span>
+              <span class="summary-label">good layout rise time</span>
             </div>
             <div class="summary-box">
               <span class="summary-num">5.58 ns</span>
-              <span class="summary-label">bad-layout rise time</span>
+              <span class="summary-label">bad layout rise time</span>
             </div>
             <div class="summary-box">
-              <span class="summary-num">0</span>
-              <span class="summary-label">hard / soft errors</span>
+              <span class="summary-num">0.917 V</span>
+              <span class="summary-label">good rail compression</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">1.85 V</span>
+              <span class="summary-label">bad rail compression</span>
             </div>
           </div>
 
           <div class="findings">
             <div class="findings-title">Main Results</div>
             <ul>
-              <li>The board successfully powered on, and the 5 V and 3.3 V indicator LEDs worked correctly.</li>
-              <li>The NE555 generated an approximately 500 Hz square-wave clock for the hex inverters.</li>
-              <li>The good layout showed faster edges and lower rail noise because of close decoupling and a continuous return plane.</li>
-              <li>The bad layout showed slower transitions, larger rail compression, and more quiet-node noise due to poor return paths.</li>
-              <li>The report confirms that local decoupling and return-path design strongly affect power integrity and switching noise.</li>
+              <li>The good layout showed faster switching edges and lower power rail disturbance.</li>
+              <li>The bad layout had slower transitions because of poor return paths and far decoupling.</li>
+              <li>Good layout rise time was about 1.76 ns, while bad layout rise time was about 5.58 ns.</li>
+              <li>Good layout fall time was about 2.64 ns, while bad layout fall time was about 9.86 ns.</li>
+              <li>The experiment confirmed that close decoupling and a continuous ground return plane improve SI and PI.</li>
             </ul>
           </div>
 
@@ -1447,7 +1469,7 @@ footer {
                 <td class="highlight">9.86 ns</td>
               </tr>
               <tr>
-                <td>Quiet high noise</td>
+                <td>Quiet High Vp-p</td>
                 <td class="highlight">690 mV</td>
                 <td class="highlight">1900 mV</td>
               </tr>
@@ -1469,8 +1491,10 @@ footer {
           </div>
 
           <div style="margin-top:1rem;">
-            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/board2-hex-inverter-report.pdf" target="_blank">
-              Open Full PDF →
+            <a class="btn btn-primary"
+               href="https://sseepideh.github.io/PCB_Portfolio/files/board2-hex-inverter-report.pdf"
+               target="_blank">
+              Open Board 2 Full PDF →
             </a>
           </div>
 
@@ -1478,17 +1502,17 @@ footer {
             <span class="tag">Hex Inverter</span>
             <span class="tag">SN74AHC14DR</span>
             <span class="tag">NE555</span>
-            <span class="tag">Good vs Bad Layout</span>
-            <span class="tag">PDN</span>
-            <span class="tag">Switching Noise</span>
-            <span class="tag">Ground Return</span>
+            <span class="tag">Good Layout</span>
+            <span class="tag">Bad Layout</span>
+            <span class="tag">Ground Plane</span>
             <span class="tag">Decoupling</span>
+            <span class="tag">Switching Noise</span>
           </div>
 
         </div>
       </div>
 
-      <!-- ===== Lab 15: Hex Inverter Findings ===== -->
+<!-- ===== Lab 15: Hex Inverter Findings ===== -->
       <div class="project-card lab">
         <div class="card-image">
           <div class="img-placeholder">
@@ -2050,3 +2074,446 @@ window.addEventListener('scroll', () => {
 </script>
 </body>
 </html>
+      <!-- ===== Lab 15: Hex Inverter High-Speed Digital Circuit PDF Report ===== -->
+      <div class="project-card lab" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">LAB 15</span>
+            <span class="card-type lab">Analysis</span>
+          </div>
+
+          <h3 class="card-title">Hex Inverter High-Speed Digital Circuit — Switching Noise Report</h3>
+
+          <p class="card-desc">
+            This lab compares switching noise, edge speed, and rail stability for three layout cases:
+            good layout, good layout with the decoupling capacitor far away, and bad layout. The goal
+            is to show how return path quality and capacitor placement affect high-speed digital behavior.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">2.25 ns</span>
+              <span class="summary-label">good layout rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">4.86 ns</span>
+              <span class="summary-label">bad layout rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">274 mV</span>
+              <span class="summary-label">good rail collapse</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">1031 mV</span>
+              <span class="summary-label">bad rail collapse</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>Good layout produced the fastest and cleanest transitions.</li>
+              <li>Bad layout showed slower edges and larger rail noise due to poor return paths.</li>
+              <li>Moving the capacitor far away also degraded performance, even with a solid return plane.</li>
+              <li>The experiment confirms that close decoupling and continuous ground planes are critical for SI and PI.</li>
+            </ul>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Layout</th>
+                <th>Rise Time</th>
+                <th>Fall Time</th>
+                <th>Rail Collapse</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Good Layout</td>
+                <td class="highlight">2.25 ns</td>
+                <td class="highlight">1.89 ns</td>
+                <td class="highlight">274 mV / 181 mV</td>
+              </tr>
+              <tr>
+                <td>Bad Layout</td>
+                <td class="highlight">4.86 ns</td>
+                <td class="highlight">3.92 ns</td>
+                <td class="highlight">1031 mV / 2763 mV</td>
+              </tr>
+              <tr>
+                <td>Good, Cap Far</td>
+                <td class="highlight">3.78 ns</td>
+                <td class="highlight">2.47 ns</td>
+                <td class="highlight">709 mV / 829 mV</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/Data%20collected%20from%20a%20Hex%20inverter%20high%20speed%20digital%20circuit.pdf" title="Lab 15 Hex Inverter high-speed digital circuit report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/Data%20collected%20from%20a%20Hex%20inverter%20high%20speed%20digital%20circuit.pdf" target="_blank">
+              Open Lab 15 Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">High-Speed Digital</span>
+            <span class="tag">Hex Inverter</span>
+            <span class="tag">Return Path</span>
+            <span class="tag">Decoupling</span>
+            <span class="tag">Rail Collapse</span>
+            <span class="tag">Signal Integrity</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===== Lab 16: Differential and Single-Ended Signals PDF Report ===== -->
+      <div class="project-card lab" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">LAB 16</span>
+            <span class="card-type lab">Signal Integrity</span>
+          </div>
+
+          <h3 class="card-title">Differential vs Single-Ended Signals — Ground Noise Study</h3>
+
+          <p class="card-desc">
+            This lab studies how ground noise affects analog measurements. I used a TMP36 temperature sensor,
+            ADS1115 16-bit ADC, Arduino Uno, and I²C communication to compare single-ended and differential
+            measurements under normal and noisy ground conditions.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">ADS1115</span>
+              <span class="summary-label">16-bit ADC</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">±1.024 V</span>
+              <span class="summary-label">ADC range</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">31.25 µV</span>
+              <span class="summary-label">LSB size</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">93 mV</span>
+              <span class="summary-label">single-ended noise</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>With no injected ground noise, both single-ended and differential measurements read about 0.734 V.</li>
+              <li>With ground-current injection, the single-ended reading shifted because it used the local ground reference.</li>
+              <li>The differential measurement rejected the common-mode ground shift and stayed stable.</li>
+              <li>This shows why differential measurement is more robust for noisy analog sensing.</li>
+            </ul>
+          </div>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/Differential%20and%20Single-ended%20signals.pdf" title="Lab 16 Differential and Single-ended signals report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/Differential%20and%20Single-ended%20signals.pdf" target="_blank">
+              Open Lab 16 Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">Differential Signal</span>
+            <span class="tag">Single-Ended</span>
+            <span class="tag">TMP36</span>
+            <span class="tag">ADS1115</span>
+            <span class="tag">I²C</span>
+            <span class="tag">Ground Noise</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===== Lab 18: Inrush Current PDF Report ===== -->
+      <div class="project-card lab" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">LAB 18</span>
+            <span class="card-type lab">Power Analysis</span>
+          </div>
+
+          <h3 class="card-title">Measuring Inrush Current and Steady-State Current</h3>
+
+          <p class="card-desc">
+            This lab measures steady-state and inrush current in a 555 timer circuit. I used a 1 Ω sense resistor
+            and oscilloscope math mode to measure the voltage across the resistor and convert it to current.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">1 Ω</span>
+              <span class="summary-label">sense resistor</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">≈360 Hz</span>
+              <span class="summary-label">555 output frequency</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">≈3.5 mA</span>
+              <span class="summary-label">steady-state current</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">≈1 A</span>
+              <span class="summary-label">inrush peak</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>The 555 timer output was measured as a square wave at approximately 360 Hz.</li>
+              <li>The steady-state voltage across the 1 Ω sense resistor was about 35 mV, corresponding to about 3.5 mA.</li>
+              <li>During power-up, the capacitor charging transient produced a short inrush current spike.</li>
+              <li>The experiment demonstrates how current can be measured safely using a sense resistor and oscilloscope math.</li>
+            </ul>
+          </div>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/Measuring%20Inrush%20Current%20and%20Steady-State%20Current.pdf" title="Lab 18 Measuring Inrush Current and Steady-State Current report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/Measuring%20Inrush%20Current%20and%20Steady-State%20Current.pdf" target="_blank">
+              Open Lab 18 Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">Inrush Current</span>
+            <span class="tag">Steady-State Current</span>
+            <span class="tag">Sense Resistor</span>
+            <span class="tag">Oscilloscope Math</span>
+            <span class="tag">555 Timer</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===== Board 3: Golden Arduino PDF Report ===== -->
+      <div class="project-card board" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">BOARD 03</span>
+            <span class="card-type board">PCB Design</span>
+          </div>
+
+          <h3 class="card-title">Golden Arduino — Custom Arduino Uno Board Report</h3>
+
+          <p class="card-desc">
+            This board is a custom Arduino Uno-style design built with ATMEGA328, CH340G USB-to-UART,
+            a 3.3 V LDO, USB mini-B, ICSP bootloading, ferrite filtering, crystals, status LEDs, and
+            test points for validating power, USB, I²C, UART, and SPI signals.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">ATMEGA328</span>
+              <span class="summary-label">main MCU</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">CH340G</span>
+              <span class="summary-label">USB-UART</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">16 MHz</span>
+              <span class="summary-label">MCU crystal</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">ICSP</span>
+              <span class="summary-label">bootloaded successfully</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>The ATMEGA328 was successfully bootloaded using the ICSP header.</li>
+              <li>The board includes USB, power, reset, crystal, and test-point features similar to an Arduino Uno.</li>
+              <li>The design supports bring-up and signal validation through labeled test points.</li>
+              <li>The project demonstrates a full PCB design workflow from schematic to functioning embedded board.</li>
+            </ul>
+          </div>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/Board%203-Arduino-UNO.pdf" title="Board 3 Arduino UNO report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/Board%203-Arduino-UNO.pdf" target="_blank">
+              Open Board 3 Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">Golden Arduino</span>
+            <span class="tag">ATMEGA328</span>
+            <span class="tag">CH340G</span>
+            <span class="tag">ICSP</span>
+            <span class="tag">USB-UART</span>
+            <span class="tag">Embedded PCB</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===== Lab 21/22: VRM Characterizer Breadboard PDF Report ===== -->
+      <div class="project-card sbb" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">LAB 21 &amp; 22</span>
+            <span class="card-type sbb">VRM Characterizer</span>
+          </div>
+
+          <h3 class="card-title">VRM Characterizer — Breadboard Instrument Report</h3>
+
+          <p class="card-desc">
+            This lab builds a breadboard version of the VRM Characterizer. The circuit applies a controlled load current,
+            measures open-circuit and loaded voltage, and computes the Thevenin resistance of voltage sources using
+            Arduino, DAC, ADC, op-amp, MOSFET, and a sense resistor.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">MCP4725</span>
+              <span class="summary-label">DAC output control</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">ADS1115</span>
+              <span class="summary-label">ADC measurement</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">48–52 Ω</span>
+              <span class="summary-label">function generator Rth</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">1.34–1.39 Ω</span>
+              <span class="summary-label">Arduino VRM Rth</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>The circuit measured Thevenin voltage and resistance by sweeping load current.</li>
+              <li>The function generator stabilized around 48–52 Ω at higher current values.</li>
+              <li>The Arduino VRM stayed nearly flat around 1.34–1.39 Ω over the measured current range.</li>
+              <li>The lab validated the core measurement concept before building the final Instrument Droid PCB.</li>
+            </ul>
+          </div>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/VRM%20Characterizer%20%28Instrument%20Droid%29.pdf" title="VRM Characterizer Instrument Droid breadboard report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/VRM%20Characterizer%20%28Instrument%20Droid%29.pdf" target="_blank">
+              Open VRM Characterizer Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">VRM</span>
+            <span class="tag">Thevenin Resistance</span>
+            <span class="tag">MCP4725</span>
+            <span class="tag">ADS1115</span>
+            <span class="tag">MOSFET Load</span>
+            <span class="tag">Arduino</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===== Board 4: Instrument Droid PDF Report ===== -->
+      <div class="project-card board" style="grid-column: 1 / -1;">
+        <div class="card-body">
+
+          <div class="card-meta">
+            <span class="card-num">BOARD 04</span>
+            <span class="card-type board">PCB Design · Capstone</span>
+          </div>
+
+          <h3 class="card-title">Instrument Droid — Automatic Rth Measurement PCB Report</h3>
+
+          <p class="card-desc">
+            Instrument Droid is a custom PCB designed to automatically measure the Thevenin resistance of a voltage
+            supply up to 12 V. The board integrates ATMEGA328 control, DAC/ADC measurement, op-amp buffering,
+            MOSFET loading, OLED display, smart LEDs, buzzer, USB interface, and test points for validation.
+          </p>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">4-layer</span>
+              <span class="summary-label">instrument PCB</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">12 V</span>
+              <span class="summary-label">max supply under test</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">OLED</span>
+              <span class="summary-label">Rth display</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">ATMEGA328</span>
+              <span class="summary-label">control MCU</span>
+            </div>
+          </div>
+
+          <div class="findings">
+            <div class="findings-title">Main Results</div>
+            <ul>
+              <li>The board was designed to measure Rthevenin automatically for voltage supplies up to 12 V.</li>
+              <li>The design combines DAC current control, ADC voltage sensing, op-amp buffering, and MOSFET loading.</li>
+              <li>The ATMEGA328 was bootloaded and the board was validated through test points and scope measurements.</li>
+              <li>The circular PCB served as the capstone design for the PCB design and manufacture course.</li>
+            </ul>
+          </div>
+
+          <div class="pdf-viewer">
+            <iframe src="https://sseepideh.github.io/PCB_Portfolio/files/Instrument%20Droid.pdf" title="Board 4 Instrument Droid full report"></iframe>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <a class="btn btn-primary" href="https://sseepideh.github.io/PCB_Portfolio/files/Instrument%20Droid.pdf" target="_blank">
+              Open Instrument Droid Full PDF →
+            </a>
+          </div>
+
+          <div class="card-tags">
+            <span class="tag">Instrument Droid</span>
+            <span class="tag">Board 4</span>
+            <span class="tag">Rth Measurement</span>
+            <span class="tag">ATMEGA328</span>
+            <span class="tag">ADC/DAC</span>
+            <span class="tag">OLED</span>
+            <span class="tag">Capstone PCB</span>
+          </div>
+
+        </div>
+      </div>
+
