@@ -853,6 +853,86 @@ footer {
   z-index: 1;
 }
 
+
+/* =========================================================
+   REPORT-STYLE PROJECT SECTIONS
+   ========================================================= */
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+  margin: 1.5rem 0 2rem;
+}
+.summary-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.summary-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1.1;
+}
+.summary-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+.report-step {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.step-label {
+  display: inline-flex;
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.35);
+  color: var(--green);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.report-step h4 {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.report-step p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.report-img {
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: block;
+}
+@media (max-width: 600px) {
+  .report-step { padding: 1rem; }
+  .report-img { max-height: 360px; }
+}
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */
@@ -1056,52 +1136,166 @@ footer {
 
     <div class="projects-grid">
 
-      <!-- ===== SSB: 555 Timer ===== -->
-      <div class="project-card sbb">
-        <div class="card-image" style="position:relative;height:auto;border-bottom:1px solid var(--border);">
-          <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;background:var(--border);">
-             <img src="https://sseepideh.github.io/PCB_Portfolio/images/NE555.jpg"
-               alt="NE555 oscilloscope measurements"
-               style="width:100%;height:160px;object-fit:cover;display:block;"/>
-   
-             <img src="https://sseepideh.github.io/PCB_Portfolio/images/TLC555.jpg"
-                 alt="TLC555 oscilloscope measurements"
-                 style="width:100%;height:160px;object-fit:cover;display:block;"/>
-            
-             <img src="https://sseepideh.github.io/PCB_Portfolio/images/SBB55TIMER.jpg"
-                 alt="555 timer breadboard setup"
-                 style="width:100%;height:160px;object-fit:cover;display:block;"/>
-            
-             <img src="https://sseepideh.github.io/PCB_Portfolio/images/circuit-diagram.jpg"
-                 alt="555 timer circuit diagram"
-                 style="width:100%;height:160px;object-fit:cover;display:block;"/>
-                   
-          </div>
-          <span class="card-badge green" style="position:absolute;top:12px;left:12px;">SBB Lab</span>
-        </div>
+      <!-- ===== SSB: 555 Timer Report ===== -->
+      <div class="project-card sbb" style="grid-column: 1 / -1;">
         <div class="card-body">
           <div class="card-meta">
             <span class="card-num">LAB 02</span>
             <span class="card-type sbb">Solderless Breadboard</span>
           </div>
-          <h3 class="card-title">555 Timer — NE555 vs TLC555 Comparison</h3>
+
+          <h3 class="card-title">555 Timer Lab Report — NE555 vs TLC555</h3>
+
           <p class="card-desc">
-            Built and characterized two 555 timer variants (NE555 bipolar and TLC555 CMOS) in astable mode
-            with RA = RB = 1 kΩ, C = 1 µF. Measured frequency, duty cycle, rise/fall times, and LED load
-            current with 47 Ω and 1 kΩ resistors. Evaluated which IC is more suitable for the Board 2 PCB design.
+            This lab compares the NE555 bipolar timer and the TLC555 CMOS timer in astable mode.
+            I built the circuit on a solderless breadboard, measured frequency, rise time, fall time,
+            and LED load current, and then selected the better timer for the PCB design.
           </p>
-          <div class="findings">
-            <div class="findings-title">Key Measurements</div>
-            <ul>
-              <li>NE555 rise = 89 ns, fall = 33.8 ns · TLC555 rise = 14.8 ns, fall = 11.1 ns</li>
-              <li>Measured frequency ~463 Hz vs theoretical 481 Hz (RA=RB=1 kΩ, C=1 µF)</li>
-              <li>With 47 Ω load: 76 mA (NE555) vs 61.7 mA (TLC555) — NE555 chosen for Board 2</li>
-              <li>NE555 preferred: higher current drive, robust output, compatible at target 500 Hz</li>
-            </ul>
+
+          <div class="report-summary">
+            <div class="summary-box">
+              <span class="summary-num">≈463 Hz</span>
+              <span class="summary-label">NE555 measured frequency</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">89 ns</span>
+              <span class="summary-label">NE555 rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">14.8 ns</span>
+              <span class="summary-label">TLC555 rise time</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-num">NE555</span>
+              <span class="summary-label">selected for PCB design</span>
+            </div>
           </div>
+
+          <!-- Step 1 -->
+          <div class="report-step">
+            <div class="step-label">Step 01</div>
+            <h4>Understand the 555 Timer Circuit</h4>
+            <p>
+              A 555 timer can generate a repeating square wave without an external trigger.
+              The frequency and duty cycle are controlled by two resistors, RA and RB, and one timing capacitor.
+              This makes the 555 timer useful for blinking LEDs, clock pulses, tone generation, and PWM-style timing.
+            </p>
+            <img src="https://sseepideh.github.io/PCB_Portfolio/images/circuit-diagram.jpg"
+                 alt="555 timer circuit diagram"
+                 class="report-img">
+          </div>
+
+          <!-- Step 2 -->
+          <div class="report-step">
+            <div class="step-label">Step 02</div>
+            <h4>Build the Circuit on a Solderless Breadboard</h4>
+            <p>
+              I placed the 555 timer circuit on a solderless breadboard and powered it with 5 VDC.
+              The output was connected to the oscilloscope so I could measure frequency, duty cycle,
+              rise time, fall time, and LED load current using different resistors.
+            </p>
+            <img src="https://sseepideh.github.io/PCB_Portfolio/images/SBB55TIMER.jpg"
+                 alt="555 timer solderless breadboard setup"
+                 class="report-img">
+          </div>
+
+          <!-- Step 3 -->
+          <div class="report-step">
+            <div class="step-label">Step 03</div>
+            <h4>Measure the NE555 Timer</h4>
+            <p>
+              For the NE555 timer, the measured frequency was about 463 Hz, close to the theoretical value
+              of about 481 Hz for RA = 1 kΩ, RB = 1 kΩ, and C = 1 µF. The measured rise time was 89 ns,
+              and the fall time was 33.8 ns. The NE555 also provided higher output current when driving the LED load.
+            </p>
+            <img src="https://sseepideh.github.io/PCB_Portfolio/images/NE555.jpg"
+                 alt="NE555 oscilloscope measurement results"
+                 class="report-img">
+          </div>
+
+          <!-- Step 4 -->
+          <div class="report-step">
+            <div class="step-label">Step 04</div>
+            <h4>Measure the TLC555 Timer</h4>
+            <p>
+              I repeated the same test with the TLC555 CMOS timer. The measured frequency was close to the NE555 result,
+              but the TLC555 switched much faster. The measured rise time was about 14.8 ns, and the fall time was
+              about 11.1 ns.
+            </p>
+            <img src="https://sseepideh.github.io/PCB_Portfolio/images/TLC555.jpg"
+                 alt="TLC555 oscilloscope measurement results"
+                 class="report-img">
+          </div>
+
+          <!-- Step 5 -->
+          <div class="report-step">
+            <div class="step-label">Step 05</div>
+            <h4>Compare the Results</h4>
+            <p>
+              Both timers produced nearly the same oscillation frequency, but their output behavior was different.
+              The TLC555 had faster switching edges, while the NE555 provided stronger current drive for the LED load.
+            </p>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Measurement</th>
+                  <th>NE555</th>
+                  <th>TLC555</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Rise time</td>
+                  <td class="highlight">89 ns</td>
+                  <td class="highlight">14.8 ns</td>
+                </tr>
+                <tr>
+                  <td>Fall time</td>
+                  <td class="highlight">33.8 ns</td>
+                  <td class="highlight">11.1 ns</td>
+                </tr>
+                <tr>
+                  <td>Frequency</td>
+                  <td class="highlight">≈463 Hz</td>
+                  <td class="highlight">≈485 Hz</td>
+                </tr>
+                <tr>
+                  <td>LED current with 1 kΩ</td>
+                  <td class="highlight">2.5 mA</td>
+                  <td class="highlight">2.7 mA</td>
+                </tr>
+                <tr>
+                  <td>LED current with 47 Ω</td>
+                  <td class="highlight">76 mA</td>
+                  <td class="highlight">61.7 mA</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="report-step">
+            <div class="step-label">Step 06</div>
+            <h4>Final Decision for PCB Design</h4>
+            <div class="findings">
+              <div class="findings-title">Why I selected the NE555</div>
+              <ul>
+                <li>The TLC555 is faster and produces sharper switching edges.</li>
+                <li>The NE555 provides stronger current drive, which is useful for driving LED loads.</li>
+                <li>The NE555 rise and fall times are still acceptable because the target frequency is only around 500 Hz.</li>
+                <li>For the PCB design, the NE555 was selected because it is more robust for this load-driving application.</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="card-tags">
-            <span class="tag">NE555</span><span class="tag">TLC555</span><span class="tag">Astable</span>
-            <span class="tag">Rise/Fall Time</span><span class="tag">LED Load</span>
+            <span class="tag">NE555</span>
+            <span class="tag">TLC555</span>
+            <span class="tag">Astable Mode</span>
+            <span class="tag">Oscilloscope</span>
+            <span class="tag">Breadboard</span>
+            <span class="tag">PCB Decision</span>
           </div>
         </div>
       </div>
